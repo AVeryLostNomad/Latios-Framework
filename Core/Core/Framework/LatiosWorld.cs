@@ -380,6 +380,13 @@ namespace Systems
         SystemSortingTracker m_tracker;
         internal bool        skipInDeferred = false;
 
+        protected override void OnCreate()
+        {
+            base.OnCreate();
+            float defaultFixedTimestep = 1.0f / 60.0f;
+            RateManager = new RateUtils.FixedRateCatchUpManager(defaultFixedTimestep);
+        }
+
         protected override void OnUpdate()
         {
             if (!skipInDeferred)
